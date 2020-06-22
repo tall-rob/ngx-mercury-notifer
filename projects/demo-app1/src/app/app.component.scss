@@ -1,0 +1,173 @@
+:host {
+  display: block;
+  height: 100%;
+  max-height: fit-content;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 16px;
+  h1 {
+    padding: 20px;
+    font-size: 20px;
+    margin: 0;
+    font-weight: 500;
+  }
+  h2 {
+    padding: 20px 20px 10px 20px;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
+  }
+  input[type=text], input[type=number], select {
+    font-size: 18px;
+    margin-top: 8px;
+    display: block;
+    padding: 6px;
+  }
+  label {
+    font-size: 18px;
+  }
+  input[type=checkbox], input[type=radio] {
+    height: 18px;
+    width: 18px;
+  }
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  .link-button {
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  > .notifier-settings, .notification-settings {
+    margin: 30px 0;
+    border-radius: 5px;
+    max-width: 900px;
+    > .heading {
+      > .link-button {
+        float: right;
+      }
+    }
+    > form {
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      align-self: flex-end;
+      flex-wrap: wrap;
+      > .field {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        white-space: nowrap;
+        .error-text {
+          &:empty {
+            display: none;
+          }
+          position: absolute;
+          font-size: 12px;
+          padding-top: 4px;
+        }
+      }
+      > .multi-field {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        white-space: nowrap;
+        > * {
+          padding: 0 2px;
+          &:not(:first-child) {
+            margin-left: 0;
+          }
+          &:not(:last-child) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    > button {
+      margin: 16px;
+    }
+  }
+}
+
+// theming
+
+:host {
+  color: rgba(0, 0, 0, .67);
+  h1 {
+    color: black;
+  }
+  > .notifier-settings, .notification-settings {
+    background-color: rgba(0, 0, 0, .07);
+  }
+  input[type=text], input[type=number], select {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+  }
+  button {
+    border: 1px solid black;
+    background-color: navy;
+    color: white;
+    &:focus {
+      background-color: rgb(35, 35, 187);
+    }
+    &:disabled {
+      border: 1px solid silver;
+      background-color: gray;
+      color: rgba(0, 0, 0, .37);
+    }
+  }
+  .link-button {
+    color: navy;
+    &:focus {
+      color: rgb(99, 75, 187);
+    }
+  }
+  .field {
+    .error-text {
+      color: red;
+    }
+  }
+}
+.dark-theme {
+  :host {
+    h1 {
+      color: white;
+    }
+    color: rgba(255, 255, 255, .75);
+    > .notifier-settings, .notification-settings {
+      background-color: rgba(255, 255, 255, .13);
+    }
+    input[type=text], input[type=number], select, option {
+      border: 1px solid white;
+      background-color: black;
+      color: white;
+    }
+    button {
+      border: 1px solid white;
+      background-color: rgb(40, 40, 128);
+      color: white;
+      &:focus {
+        background-color: rgb(75, 75, 187);
+      }
+    }
+    .link-button {
+      color: white;
+      &:focus {
+        color: rgba(255, 255, 255, .75);
+      }
+    }
+    .field {
+      .error-text {
+        color: red;
+      }
+    }
+  }
+}

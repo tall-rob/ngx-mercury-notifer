@@ -1,0 +1,96 @@
+<ng-container *ngFor="let kvp of notifications | keyvalue; trackBy: trackByKey">
+  <div class="notifier" [@notify]="'show'" (touchstart)="holdOn(kvp.value)" (touchend)="holdOff()"
+    (mouseenter)="holdOn(kvp.value)" (mouseleave)="holdOff()">
+    <div class="notification">
+      <button class="close" *ngIf="kvp.value.canDismiss" (click)="destroy(kvp.value)">
+        <ng-container *ngTemplateOutlet="closeIcon"></ng-container>
+      </button>
+      <div *ngIf="kvp.value.tally > 1" class="tally-badge">
+        <span class="tally">{{kvp.value.tally}}</span>
+      </div>
+      <ng-container *ngIf="!!kvp.value.notificationType">
+        <ng-container [ngSwitch]="kvp.value.notificationType">
+          <ng-container *ngSwitchCase="'INFO'">
+            <span class="level info-type">
+              <ng-container *ngTemplateOutlet="infoIcon"></ng-container>
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'ACCEPT'">
+            <span class="level accept-type">
+              <ng-container *ngTemplateOutlet="acceptIcon"></ng-container>
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'WARN'">
+            <span class="level warn-type">
+              <ng-container *ngTemplateOutlet="warnIcon"></ng-container>
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'FAIL'">
+            <span class="level fail-type">
+              <ng-container *ngTemplateOutlet="failIcon"></ng-container>
+            </span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'ERROR'">
+            <span class="level error-type">
+              <ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+            </span>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <span class="message">{{kvp.value.message}}</span>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #closeIcon>
+  <svg version="1.1" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+    <path d="m0.50513 11.495 10.99-10.99" stroke="currentColor" stroke-linecap="round" stroke-width="1px" />
+    <path d="m11.495 11.495-10.99-10.99" shape-rendering="geometricPrecision" stroke="currentColor"
+      stroke-linecap="round" stroke-width="1px" />
+  </svg>
+</ng-template>
+
+<ng-template #infoIcon>
+  <svg version="1.1" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="6" cy="6" r="6" fill="currentColor" />
+    <path class="text" d="m6 6.0681v2.8753" fill="none" shape-rendering="geometricPrecision" stroke="currentColor"
+      stroke-linecap="round" stroke-width="1.5" />
+    <circle class="text" cx="6" cy="3.6561" r=".75" fill="currentColor" />
+  </svg>
+</ng-template>
+
+<ng-template #acceptIcon>
+  <svg version="1.1" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="6" cy="6" r="6" fill="currentColor" />
+    <path class="text" d="m8.9103 3.5641-3.8337 5.2642-1.8382-1.8855" fill="none" stroke="currentColor"
+      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+  </svg>
+</ng-template>
+
+<ng-template #warnIcon>
+  <svg version="1.1" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+    <path d="m12 11.196h-12l6-10.392z" fill="currentColor" />
+    <path class="text" d="m6 7.4394v-2.4802" fill="none" stroke="currentColor" stroke-linecap="round"
+      stroke-width="1.5" />
+    <circle class="text" cx="6" cy="9.5654" r=".75" fill="currentColor" />
+  </svg>
+</ng-template>
+
+<ng-template #failIcon>
+  <svg version="1.1" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="6" cy="6" r="6" fill="currentColor" />
+    <path class="text" d="m6 6.9201v-4.0618" fill="none" stroke="currentColor" stroke-linecap="round"
+      stroke-width="1.5" />
+    <circle class="text" cx="6" cy="9.1523" r=".75" fill="currentColor" />
+  </svg>
+</ng-template>
+
+<ng-template #errorIcon>
+  <svg version="1.1" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor"
+      d="m10.359 10.359-2.3631-0.75523-0.64228 2.3963-1.5797-1.9129-1.8359 1.6687-0.29471-2.4633-2.4466 0.41123 1.0838-2.2316-2.2805-0.97677 2.1183-1.2914-1.3904-2.0546 2.4802 0.058859-0.058859-2.4802 2.0546 1.3904 1.2914-2.1183 0.97677 2.2805 2.2316-1.0838-0.41123 2.4466 2.4633 0.29471-1.6687 1.8359 1.9129 1.5797-2.3963 0.64228z" />
+    <path class="text" d="m6 6.145v-2.4802" fill="none" stroke="currentColor" stroke-linecap="round"
+      stroke-width="1.3524" />
+    <circle class="text" cx="6" cy="8.271" r=".75" fill="currentColor" />
+  </svg>
+</ng-template>

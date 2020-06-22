@@ -1,0 +1,129 @@
+<h1>
+  Mercury Notifier Demo
+</h1>
+<section class="buttons">
+  <button (click)="showTestMessage(1)" [disabled]="globalSettings.invalid">Show Plain</button>
+  <button (click)="showTestMessage(2)" [disabled]="globalSettings.invalid">Show Info</button>
+  <button (click)="showTestMessage(3)" [disabled]="globalSettings.invalid">Show Accept</button>
+  <button (click)="showTestMessage(4)" [disabled]="globalSettings.invalid">Show Warn</button>
+  <button (click)="showTestMessage(5)" [disabled]="globalSettings.invalid">Show Fail</button>
+  <button (click)="showTestMessage(6)" [disabled]="globalSettings.invalid">Show Error</button>
+</section>
+<section class="notifier-settings">
+  <h2 class="heading">
+    Global Settings
+    <span tabindex="0" class="link-button" (click)="resetGlobalSettings()" (keydown.enter)="resetGlobalSettings()"
+      (keydown.space)="resetGlobalSettings()">Restore Defaults</span>
+  </h2>
+  <form [formGroup]="globalSettings">
+    <div class="field">
+      <div class="label">Theme</div>
+      <select formControlName="theme" (change)="updateSetting(globalSettings, 'theme')">
+        <option value="AUTO" selected>Auto Detect</option>
+        <option value="DARK-ON-LIGHT">Dark on Light</option>
+        <option value="LIGHT-ON-DARK">Light on Dark</option>
+      </select>
+    </div>
+    <div class="field">
+      <div class="label">Position</div>
+      <select formControlName="position" (change)="updateSetting(globalSettings, 'position')">
+        <option [ngValue]="Position.TOP_LEFT">Top Left</option>
+        <option [ngValue]="Position.TOP_CENTER">Top Center</option>
+        <option [ngValue]="Position.TOP_RIGHT">Top Right</option>
+        <option [ngValue]="Position.BOTTOM_LEFT">Bottom Left</option>
+        <option [ngValue]="Position.BOTTOM_CENTER">Bottom Center</option>
+        <option [ngValue]="Position.BOTTOM_RIGHT">Bottom Right</option>
+      </select>
+    </div>
+    <div class="field">
+      <div class="label">Duration*</div>
+      <div>
+        <input (blur)="updateSetting(globalSettings, 'duration')" formControlName="duration" style="width: 10ch"
+          step="1000" type="number" placeholder="# of ticks" />
+        <div class="error-text">
+          <div *ngIf="globalSettings.controls.duration.hasError('required')">Required</div>
+          <div *ngIf="globalSettings.controls.duration.hasError('min')">Too small</div>
+          <div *ngIf="globalSettings.controls.duration.hasError('max')">Too big</div>
+          <div *ngIf="globalSettings.controls.duration.hasError('posInt')">Invalid Number</div>
+        </div>
+      </div>
+    </div>
+    <div class="field multi-field">
+      <div>
+        <div class="label">Max Width*</div>
+        <input (blur)="updateSetting(globalSettings, 'maxWidth')" formControlName="maxWidth" style="width: 15ch"
+          type="text" placeholder="css number unit" />
+        <div class="error-text">
+          <div *ngIf="globalSettings.controls.maxWidth.hasError('required')">Required</div>
+          <div *ngIf="globalSettings.controls.maxWidth.hasError('unit')">Invalid Unit</div>
+        </div>
+      </div>
+      <label><input
+          (click)="globalSettings.controls.maxWidth.setValue('unset');updateSetting(globalSettings, 'maxWidth')"
+          [checked]="globalSettings.controls.maxWidth.value === 'unset'" type="radio" /> Unset</label>
+    </div>
+    <div class="field">
+      <label><input formControlName="canDismiss" type="checkbox"
+          (change)="updateSetting(globalSettings, 'canDismiss')" /> Allow Dismiss</label>
+    </div>
+    <div class="field">
+      <label><input formControlName="coalesce" type="checkbox" (change)="updateSetting(globalSettings, 'coalesce')" />
+        Coalesce Duplicates</label>
+    </div>
+    <div class="field">
+      <label><input formControlName="rolloverPause" type="checkbox"
+          (change)="updateSetting(globalSettings, 'rolloverPause')" /> Pause on Roll-over</label>
+    </div>
+  </form>
+</section>
+<section class="notification-settings">
+  <h2 class="heading">
+    Message Specific Settings
+    <span tabindex="0" class="link-button" (click)="resetMessageSettings()" (keydown.enter)="resetMessageSettings()"
+      (keydown.space)="resetMessageSettings()">Restore Defaults</span>
+  </h2>
+  <form [formGroup]="messageSettings">
+    <div class="field">
+      <div class="label">Message</div>
+      <input formControlName="message" style="width: 30ch" type="text" />
+      <div class="error-text">
+        <div *ngIf="messageSettings.controls.message.hasError('required')">Required</div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="label">Type</div>
+      <select formControlName="type">
+        <option [ngValue]="null">None</option>
+        <option value="INFO">Info</option>
+        <option value="ACCEPT">Warn</option>
+        <option value="WARN">Accept</option>
+        <option value="FAIL">Error</option>
+        <option value="ERROR">Fail</option>
+      </select>
+    </div>
+    <div class="field multi-field">
+      <div>
+        <div class="label">Duration</div>
+        <input formControlName="duration" style="width: 10ch" type="number" step="1000" placeholder="# of ticks" />
+        <div class="error-text">
+          <div *ngIf="messageSettings.controls.duration.hasError('min')">Too small</div>
+          <div *ngIf="messageSettings.controls.duration.hasError('max')">Too big</div>
+          <div *ngIf="messageSettings.controls.duration.hasError('int')">Invalid Number</div>
+        </div>
+      </div>
+      <label><input (click)="messageSettings.controls.duration.setValue(null)"
+          [checked]="messageSettings.controls.duration.value === null" type="radio" /> Default</label>
+    </div>
+    <div class="field">
+      <div class="label">Allow Dismiss</div>
+      <select formControlName="canDismiss">
+        <option [ngValue]="null">Default</option>
+        <option [ngValue]="true">Yes</option>
+        <option [ngValue]="false">No</option>
+      </select>
+    </div>
+  </form>
+  <div class="buttons">
+    <button (click)="showMessage()" [disabled]="globalSettings.invalid || messageSettings.invalid">Show Message</button>
+  </div>
+</section>

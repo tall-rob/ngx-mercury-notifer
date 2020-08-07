@@ -1,12 +1,11 @@
 {
   "name": "ngx-mercury-notifier",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
     "@angular/common": "^9.0.7",
     "@angular/core": "^9.0.7",
-    "@angular/cdk": "^9.2.1",
-    "tslib": "^1.10.0"
-  },
+    "@angular/cdk": "^9.2.1"
+},
   "sideEffects": false,
   "description": "Notification library built for Angular that will blend in with your Material Design apps",
   "directories": {
@@ -21,9 +20,12 @@
   "homepage": "https://github.com/tall-rob/ngx-mercury-notifer",
   "keywords": [
       "angular",
-      "angular 9",
+      "angular 10",
       "material",
       "notifier",
       "notification"
-  ]
+  ],
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }

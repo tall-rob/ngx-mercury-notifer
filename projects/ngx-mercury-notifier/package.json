@@ -1,6 +1,6 @@
 {
   "name": "ngx-mercury-notifier",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^9.0.7",
     "@angular/core": "^9.0.7",
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/tall-rob/ngx-mercury-notifer",
   "keywords": [
       "angular",
-      "angular 11",
+      "angular 12",
       "material",
       "notifier",
       "notification"

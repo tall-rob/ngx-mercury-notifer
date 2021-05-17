@@ -86,7 +86,6 @@
             "main": "projects/demo-app1/src/main.ts",
             "polyfills": "projects/demo-app1/src/polyfills.ts",
             "tsConfig": "projects/demo-app1/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/demo-app1/src/favicon.ico",
               "projects/demo-app1/src/assets"
@@ -94,7 +93,13 @@
             "styles": [
               "projects/demo-app1/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -188,7 +193,6 @@
             "main": "projects/demo-app2/src/main.ts",
             "polyfills": "projects/demo-app2/src/polyfills.ts",
             "tsConfig": "projects/demo-app2/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/demo-app2/src/favicon.ico",
               "projects/demo-app2/src/assets"
@@ -196,7 +200,13 @@
             "styles": [
               "projects/demo-app2/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {

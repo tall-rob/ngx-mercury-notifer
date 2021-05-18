@@ -93,7 +93,7 @@ export class MercuryNotifierComponent implements OnInit, OnDestroy {
   @HostBinding('style.--right') get rightCSSVar(): string {
     return this?.config?.right ?? 'unset';
   }
-  @HostBinding('style.--maxWidth') get maxWidthCSSVar(): string {
+  @HostBinding('style.--max-width') get maxWidthCSSVar(): string {
     return this?.config?.maxWidth ?? 'unset';
   }
   @HostBinding('class.bottom-up') get bottomUp(): boolean {

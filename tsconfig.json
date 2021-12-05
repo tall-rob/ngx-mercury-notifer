@@ -17,8 +17,7 @@
     ],
     "paths": {
       "ngx-mercury-notifier": [
-        "dist/ngx-mercury-notifier/ngx-mercury-notifier",
-        "dist/ngx-mercury-notifier"
+        "projects/ngx-mercury-notifier/src/public-api",
       ]
     }
   },

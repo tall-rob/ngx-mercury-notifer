@@ -55,7 +55,7 @@ export class Notification {
     return JSON.stringify([this.notificationType, this.message]);
   }
 
-  constructor(message: string, notificationType: NotificationType | null, canDismiss = false) {
+  constructor(message: string, notificationType: NotificationType | null, canDismiss: boolean) {
     this.message = message;
     this.notificationType = notificationType;
     this.canDismiss = canDismiss;
@@ -82,27 +82,27 @@ export class MercuryNotifierComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
 
   @HostBinding('style.--top') get topCSSVar(): string {
-    return this?.config?.top ?? 'unset';
+    return this.config?.top ?? 'unset';
   }
   @HostBinding('style.--bottom') get bottomCSSVar(): string {
-    return this?.config?.bottom;
+    return this.config?.bottom ?? '0';
   }
   @HostBinding('style.--left') get leftCSSVar(): string {
-    return this?.config?.left ?? 'unset';
+    return this.config?.left ?? 'unset';
   }
   @HostBinding('style.--right') get rightCSSVar(): string {
-    return this?.config?.right ?? 'unset';
+    return this.config?.right ?? 'unset';
   }
   @HostBinding('style.--max-width') get maxWidthCSSVar(): string {
-    return this?.config?.maxWidth ?? 'unset';
+    return this.config?.maxWidth ?? 'unset';
   }
   @HostBinding('class.bottom-up') get bottomUp(): boolean {
-    return this?.config?.direction === 'BOTTOM-UP';
+    return this.config?.direction === 'BOTTOM-UP';
   }
 
   private prefersLightOnDark: boolean;
   @HostBinding('class.light-on-dark') get lightOnDark(): boolean {
-    switch (this?.config?.theme) {
+    switch (this.config?.theme) {
       case 'AUTO': {
         return this.prefersLightOnDark;
       }

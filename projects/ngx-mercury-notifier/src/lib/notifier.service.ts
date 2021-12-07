@@ -16,7 +16,7 @@ export class MercuryNotifierService implements OnDestroy {
   private notifierComponent: MercuryNotifierComponent;
 
   constructor(
-    @Optional() @Inject('MERCURY_NOTIFIER_SETTINGS') settings: MercuryNotifierSettings = {},
+    @Optional() @Inject('MERCURY_NOTIFIER_SETTINGS') settings: MercuryNotifierSettings,
     private overlay: Overlay,
   ) {
     if (settings) {

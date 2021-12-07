@@ -18,7 +18,7 @@ import { MercuryNotifierModule, MercuryNotifierSettings } from 'ngx-mercury-noti
   ],
   providers: [
     {
-      provide: 'NOTIFIER_MERCURY_SETTINGS',
+      provide: 'MERCURY_NOTIFIER_SETTINGS',
       useValue: {
         direction: 'BOTTOM-UP',
         top: 'unset', bottom: '0', left: 'unset', right: '0',

@@ -24,6 +24,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "codeCoverage": true,
             "main": "projects/ngx-mercury-notifier/src/test.ts",
             "tsConfig": "projects/ngx-mercury-notifier/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-mercury-notifier/karma.conf.js"

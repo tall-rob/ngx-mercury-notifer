@@ -6,7 +6,7 @@
     "start1": "ng serve demo-app1",
     "start2": "ng serve demo-app2",
     "build:lib": "ng build ngx-mercury-notifier",
-    "test": "ng test --no-watch --code-coverage"
+    "test:lib": "ng test --browsers=ChromeHeadless --watch=false --code-coverage"
   },
   "private": true,
   "dependencies": {
